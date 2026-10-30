@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
 		<AssemblyName>VGECompat</AssemblyName>
 		<AssemblyVersion>15.6.3.1</AssemblyVersion>
 		<FileVersion>15.6.3.1</FileVersion>
@@ -16,7 +15,6 @@
 		<DebugType>embedded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<LangVersion>12.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -24,7 +22,6 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
-		<LangVersion>12.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\Program Files (x86)\Mono\bin\pdb2mdb.bat')">
