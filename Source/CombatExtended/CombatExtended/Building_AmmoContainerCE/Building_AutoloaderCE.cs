@@ -421,6 +421,12 @@ public class Building_AutoloaderCE : Building
             //if turret type restriction is in place, if both are null, tag chech automatically pass
             bool tagMatch = graphicsExt.allowedTurrets.NullOrEmpty() && graphicsExt.allowedTurretTags.NullOrEmpty();
 
+            //if the turret is listed by defName
+            if (!tagMatch)
+            {
+                tagMatch = graphicsExt.allowedTurrets.NotNullAndContains(turret.def.defName);
+            }
+
             //if tag exists and match
             if (!tagMatch)
             {
