@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Verse;
 
@@ -22,7 +24,7 @@ public class PatchOperationMakeVGEBarrelsCompatible : PatchOperation
 
         if (turretGunNode == null || turretGunNode.NodeType != XmlNodeType.Element)
         {
-            Log.Error($"[PatchOperationMakeVGEBarrelsCompatible] turretDefName did not match anything or is not an element: {turretGunDefName}");
+            Log.Error($"[PatchOperationMakeVGEBarrelsCompatible] turretGunDefName did not match anything or is not an element: {turretGunDefName}");
             return false;
         }
 
@@ -56,8 +58,8 @@ public class PatchOperationMakeVGEBarrelsCompatible : PatchOperation
             return false;
         }
 
-        // get child nodes
-        XmlNodeList barrelChildNodes = barrelNode.ChildNodes;
+        // get child nodes; copy them first, as moving a node out of a live ChildNodes list ends the loop early
+        List<XmlNode> barrelChildNodes = barrelNode.ChildNodes.Cast<XmlNode>().Where(node => node.NodeType == XmlNodeType.Element).ToList();
 
         // add a new offsets node
         XmlElement offsetsElement = xml.CreateElement("offsets");
