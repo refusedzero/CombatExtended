@@ -27,7 +27,7 @@ public class Verb_LaunchProjectile_ForcedMissRadius_Patch_GetAdjustedForcedMissR
             __result = turret.GetLocalForcedMissRadius(baseMiss);
             return false;
         }
-        __result = baseMiss;
-        return false;
+        // Let VGE handle its own turrets and every other verb
+        return true;
     }
 }
