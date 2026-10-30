@@ -474,6 +474,11 @@ public abstract class ProjectileCE : ThingWithComps
     #endregion
 
     #region Raycast
+    /// <summary>
+    /// Whether an instant ray cast may stop at <paramref name="thing"/>. Override to let a beam pass things it should not hit.
+    /// </summary>
+    protected virtual bool CanRayCastCollideWith(Thing thing) => true;
+
     public virtual void RayCast(
         Thing launcher,
         VerbProperties verbProps,
@@ -552,7 +557,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
             foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
             {
-                if (this == thing)
+                if (this == thing || !CanRayCastCollideWith(thing))
                 {
                     continue;
                 }

@@ -38,4 +38,23 @@ public class Projectile_ArtilleryBeamCE : LaserBeamCE
 
         MoteMaker.MakeInteractionOverlay(beamMoteDef, originTarget, destTarget, offsetA, Vector3.zero);
     }
+
+    /// <summary>
+    /// VGE's beam only resolves at its destination, so it never hits the shooter's own ship on the way.
+    /// Pass over the launcher and buildings of its faction, unless one of them is the aimed target.
+    /// Pawns, unowned and hostile things still block the beam.
+    /// </summary>
+    protected override bool CanRayCastCollideWith(Thing thing)
+    {
+        if (thing == intendedTargetThing)
+        {
+            return true;
+        }
+        if (thing == launcher)
+        {
+            return false;
+        }
+        Faction faction = launcher?.Faction;
+        return faction == null || !(thing is Building && thing.Faction == faction);
+    }
 }
