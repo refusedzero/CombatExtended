@@ -633,7 +633,7 @@ public abstract class ProjectileCE : ThingWithComps
         var lbce = this as LaserBeamCE;
 
         // compute the direction and destination
-        float range = Math.Max(map.Size.x, map.Size.y); // use map size as range to draw the raycast over the whole map
+        float range = map.Size.x + map.Size.z; // longer than the map's diagonal, so the ray always reaches the edge
         shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
         Vector3 direction = new Vector3(Mathf.Cos(shotRotation), 0, Mathf.Sin(shotRotation));
         Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
@@ -693,7 +693,7 @@ public abstract class ProjectileCE : ThingWithComps
             launcher,
             originLocal,
             precisedShotRotation,
-            shotSpeed,
+            shotHeight,
             equipment
         );
 
