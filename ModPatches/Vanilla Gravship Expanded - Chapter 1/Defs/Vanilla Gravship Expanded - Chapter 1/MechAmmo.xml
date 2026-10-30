@@ -57,6 +57,9 @@
             <soundExplode>MortarBomb_Explode</soundExplode>
             <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
             <soundAmbient>MortarRound_Ambient</soundAmbient>
+			<shellingProps>
+				<range>72</range> <!-- based on the Mass Driver's VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange x2 -->
+			</shellingProps>
 		</projectile>
 		<modExtensions>
             <li Class="VanillaGravshipExpanded.SubstructureDamageExtension">
