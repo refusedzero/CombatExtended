@@ -412,7 +412,8 @@ public class ExplosionCE : Verse.Explosion
         base.ExposeData();
         Scribe_Values.Look<int>(ref startTick, "startTick", 0, false);
         Scribe_Collections.Look<IntVec3>(ref cellsToAffect, "cellsToAffect", LookMode.Value, new object[0]);
-        Scribe_Collections.Look<Thing>(ref damagedThings, "damagedThings", LookMode.Reference, new object[0]);
+        // damagedThings is already saved by base.ExposeData(). Looking up the same reference list a second time
+        // fails on load ("Could not get load IDs list") and leaves the explosion with an empty list.
         Scribe_Collections.Look<IntVec3>(ref addedCellsAffectedOnlyByDamage, "addedCellsAffectedOnlyByDamage", LookMode.Value);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
