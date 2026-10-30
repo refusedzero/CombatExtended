@@ -118,7 +118,7 @@ public class Verb_ShootMortarCE : Verb_ShootCE
         // Shelling across layers
         if (globalSourceInfo.Tile.Layer != globalTargetInfo.Tile.Layer)
         {
-            OrbitalTurretExtension orbitalTurretExtension = caster.def.GetModExtension<OrbitalTurretExtension>();
+            OrbitalTurretExtension orbitalTurretExtension = (caster as Building_TurretGunCE)?.OrbitalTurretExtension ?? caster.def.GetModExtension<OrbitalTurretExtension>();
             if (orbitalTurretExtension != null && orbitalTurretExtension.interLayerPrecisionBonusFactor != 0)
             {
                 shotDist = shotDist / orbitalTurretExtension.interLayerPrecisionBonusFactor;

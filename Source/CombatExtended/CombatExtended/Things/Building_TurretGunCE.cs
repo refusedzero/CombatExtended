@@ -166,7 +166,7 @@ public class Building_TurretGunCE : Building_Turret
         {
             if (orbitalTurretExtension == null && Gun != null)
             {
-                orbitalTurretExtension = Gun.def.GetModExtension<OrbitalTurretExtension>();
+                orbitalTurretExtension = Gun.def.GetModExtension<OrbitalTurretExtension>() ?? def.GetModExtension<OrbitalTurretExtension>();
             }
             return orbitalTurretExtension;
         }
