@@ -161,14 +161,9 @@ public class JobDriver_ReloadTurret : JobDriver
         }
 
         // If ammo system is turned off we just need to go to the turret.
-        if (turret.InteractionCell.IsValid)
-        {
-            yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.OnCell);
-        }
-        else
-        {
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-        }
+        // The interaction cell is looked up when this toil starts. A job loaded from a save makes its toils
+        // before the turret is spawned again, and InteractionCell needs the turret's map.
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 
         //If pawn fails reloading from this point, reset isReloading
         this.AddFinishAction(delegate
